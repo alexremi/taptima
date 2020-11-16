@@ -19,6 +19,7 @@
                 <td>{{ author.name }}</td>
                 <td>
                     <a href="{{ path('author_show', {'id': author.id}) }}">Просмотр</a>
+                    <a href="{{ path('author_edit', {'id': author.id}) }}">Редактировать</a>
                 </td>
             </tr>
         {% else %}
@@ -26,6 +27,7 @@
                 <td colspan="4">нет записей</td>
             </tr>
         {% endfor %}
+        <a href="{{ path('author_new') }}">Добавить автора</a>
         </tbody>
     </table>
 {% endblock %}

@@ -66,4 +66,23 @@ class AuthorController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/{id}/edit", name="author_edit", methods={"GET","POST"})
+     */
+    public function edit(Request $request, Author $author): Response
+    {
+        $form = $this->createForm(AuthorType::class, $author);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('author_index');
+        }
+
+        return $this->render('author/editauthor.html.twig', [
+            'author' => $author,
+            'form' => $form->createView(),
+        ]);
+    }
 }

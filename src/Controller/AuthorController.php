@@ -3,8 +3,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Book;
-use App\Repository\BookRepository;
+use App\Entity\Author;
+use App\Repository\AuthorRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,19 +12,19 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * @Route("/book")
+ * @Route("/author")
  */
-class BookController extends AbstractController
+class AuthorController extends AbstractController
 {
     /**
      * @Route("/", name="book_index", methods={"GET"})
-     * @param BookRepository $bookRepository
+     * @param AuthorRepository $authorRepository
      * @return Response
      */
-    public function index(BookRepository $bookRepository): Response
+    public function index(AuthorRepository $authorRepository): Response
     {
-        return $this->render('book/index.html.twig', [
-            'books' => $bookRepository->findAll(),
+        return $this->render('author/index.html.twig', [
+            'books' => $authorRepository->findAll(),
         ]);
     }
 }

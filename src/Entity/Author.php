@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="author")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Repository\AuthorRepository")
  * @package App\Entity
  */
 class Author
@@ -31,11 +31,6 @@ class Author
      * @ORM\JoinColumn(nullable=false)
      */
     private $authors;
-
-    public function __construct()
-    {
-        $this->authors = new ArrayCollection();
-    }
 
     /**
      * @return mixed

@@ -32,6 +32,11 @@ class Author
      */
     private $authors;
 
+    public function __construct()
+    {
+        $this->authors = new ArrayCollection();
+    }
+
     /**
      * @return mixed
      */

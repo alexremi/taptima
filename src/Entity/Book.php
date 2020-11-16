@@ -53,6 +53,11 @@ class Book
         return $this->name;
     }
 
+    public function __construct()
+    {
+        $this->author = new ArrayCollection();
+    }
+
     /**
      * @return mixed
      */

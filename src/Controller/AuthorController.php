@@ -53,4 +53,17 @@ class AuthorController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/{id}", name="author_show", methods={"GET"})
+     * @param Author $author
+     * @return Response
+     */
+    public function show(Author $author): Response
+    {
+        return $this->render('author/showauthor.html.twig', [
+            'author' => $author,
+        ]);
+    }
+
 }

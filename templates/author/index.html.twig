@@ -17,6 +17,9 @@
             <tr>
                 <td>{{ author.id }}</td>
                 <td>{{ author.name }}</td>
+                <td>
+                    <a href="{{ path('author_show', {'id': author.id}) }}">Просмотр</a>
+                </td>
             </tr>
         {% else %}
             <tr>

@@ -1,13 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Новый автор{% endblock %}
+{% block title %}Автор{% endblock %}
 
 {% block body %}
-    <h1>Новый автор</h1>
+    <h1>Автор</h1>
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Добавить') }}</button>
-    {{ form_end(form) }}
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ author.id }}</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>{{ author.name }}</td>
+        </tr>
+        </tbody>
+    </table>
 
+    <a href="{{ path('author_index') }}">Список авторов</a>
 {% endblock %}

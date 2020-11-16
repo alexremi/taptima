@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Список авторов{% endblock %}
+
+{% block body %}
+    <h1>Список авторов</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Автор</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for author in authors %}
+            <tr>
+                <td>{{ author.id }}</td>
+                <td>{{ author.name }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">нет записей</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

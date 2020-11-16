@@ -3,6 +3,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,6 +25,12 @@ class Author
      * @ORM\Column(type="string", length=255)
      */
     private $name;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Book", inversedBy="author")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $authors;
 
     /**
      * @return mixed
@@ -55,5 +63,27 @@ class Author
     {
         $this->name = $name;
     }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAuthors()
+    {
+        return $this->authors;
+    }
+
+    /**
+     * @param mixed $authors
+     */
+    public function setAuthors($authors): void
+    {
+        $this->authors = $authors;
+    }
+
 
 }

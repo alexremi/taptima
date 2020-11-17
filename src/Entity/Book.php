@@ -149,6 +149,4 @@ class Book
     {
         $this->author = $author;
     }
-
-
 }

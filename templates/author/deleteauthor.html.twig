@@ -1,13 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Изменить автора{% endblock %}
+{% block title %}Удалить автора{% endblock %}
 
 {% block body %}
-    <h1>Изменить автора</h1>
-
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Изменить') }}</button>
-    {{ form_end(form) }}
+    <h1>Вы действительно хотите удалить автора?</h1>
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ author.id }}</td>
+        </tr>
+        <tr>
+            <th>Имя</th>
+            <td>{{ author.name }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <form method="post" action="{{ path('author_delete', {'id': author.id}) }}" onsubmit="return confirm('Удалить автора?');">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ author.id) }}">
+        <button class="btn">Удалить</button>
+    </form>
     <a href="{{ path('author_index') }}">Список авторов</a>
 {% endblock %}

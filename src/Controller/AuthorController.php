@@ -68,6 +68,9 @@ class AuthorController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="author_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Author $author
+     * @return Response
      */
     public function edit(Request $request, Author $author): Response
     {
@@ -84,5 +87,31 @@ class AuthorController extends AbstractController
             'author' => $author,
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/{id}/delete", name="author_delete", methods={"GET","DELETE"})
+     * @param Request $request
+     * @param Author $author
+     * @return Response
+     */
+    public function delete(Request $request, Author $author): Response
+    {
+       /* return $this->render('author/deleteauthor.html.twig', [
+            'author' => $author,
+        ]);*/
+
+        if ($this->isCsrfTokenValid('delete'.$author->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($author);
+            $entityManager->flush();
+            return $this->redirectToRoute('author_index');
+        }
+        return $this->render('author/deleteauthor.html.twig', [
+            'author' => $author,
+        ]);
+       // return $this->redirectToRoute('author_index');
+
+
     }
 }
